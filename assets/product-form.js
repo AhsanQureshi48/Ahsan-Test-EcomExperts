@@ -89,10 +89,7 @@ if (!customElements.get('product-form')) {
                 { once: true }
               );
               quickAddModal.hide(true);
-            } else {
-
-              console.log('response',response);
-              
+            } else {              
               let check_id = response.variant_id;
               if(check_id == 41162704814128){
                 addToCart(41162705076272,1)  
