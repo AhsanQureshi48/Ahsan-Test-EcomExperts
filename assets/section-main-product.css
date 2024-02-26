@@ -15,12 +15,6 @@
   padding-left: 0;
 }
 
-/* Custom css */
-fieldset.js.product-form__input.Size,
-.product-form__input.product-form__input--dropdown.Color {
-  display: none;
-}
-
 fieldset.js.product-form__input.Color label {
   border-radius: 0px;
   font-size: 0px;
@@ -32,12 +26,18 @@ fieldset.js.product-form__input.Color label {
   display: inline-block;
   margin: 0.7rem 0.5rem 0.2rem 0;
   padding: 1rem 2rem;
+  font-size: 0;
   letter-spacing: .1rem;
   line-height: 1;
   text-align: center;
   transition: border var(--duration-short) ease;
   cursor: pointer;
   position: relative;
+}
+
+fieldset.js.product-form__input.Size,
+.product-form__input.product-form__input--dropdown.Color {
+  display: none;
 }
 
 .product-form__submit {
