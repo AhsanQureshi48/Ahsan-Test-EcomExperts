@@ -55,9 +55,7 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-            disabled
-          {% endif %}
+          disabled
           class="product-variant-id"
         >
 
@@ -75,6 +73,12 @@
               assign quantity_rule_soldout = true
             endif
           -%}
+          {% if product.handle == 'soft-winter-jacket' %}
+            You cannot buy this product 
+          {% else %}
+          {% if product.handle == 'handbag' %}
+            <p style="font-size: 12px;">Selet Black & Medium to get addtional product to your cart</p>
+          {% endif %}  
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -93,9 +97,12 @@
             </span>
             {%- render 'loading-spinner' -%}
           </button>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
-          {%- endif -%}
+          {% endif %}
+          {% unless product.handle == 'soft-winter-jacket' %}
+            {%- if show_dynamic_checkout -%}
+              {{ form | payment_button }}
+            {%- endif -%}
+          {% endunless %}
         </div>
       {%- endform -%}
     </product-form>
@@ -129,7 +136,6 @@
       data-root-url="{{ routes.root_url }}"
       data-variant-id="{{ product.selected_or_first_available_variant.id }}"
       data-has-only-default-variant="{{ product.has_only_default_variant }}"
-      data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
     >
       <template>
         <pickup-availability-preview class="pickup-availability-preview">
